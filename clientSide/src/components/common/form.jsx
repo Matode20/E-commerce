@@ -1,4 +1,3 @@
-import React from "react";
 import { Label } from "@radix-ui/react-label";
 import {
   Select,
@@ -9,6 +8,7 @@ import {
 } from "@radix-ui/react-select";
 import { Textarea } from "@radix-ui/react-textarea";
 import { Button } from "../ui/button";
+import PropTypes from "prop-types";
 
 const types = {
   input: "input",
@@ -47,10 +47,15 @@ function CommonForm({
         break;
       case types.select:
         element = (
-          <Select onValueChange={(value) => setFormData({
-            ...formData,
-            [getControlItem.name]: value
-          })} value={value}>
+          <Select
+            onValueChange={(value) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: value,
+              })
+            }
+            value={value}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder={getControlItem.placeholder} />
             </SelectTrigger>
@@ -122,5 +127,13 @@ function CommonForm({
     </form>
   );
 }
+
+CommonForm.propTypes = {
+  formControls: PropTypes.array.isRequired,
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  buttonText: PropTypes.string,
+};
 
 export default CommonForm;

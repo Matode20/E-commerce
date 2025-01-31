@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import AuthLayout from "./components/authLayout";
-import AdminLayout from "./pages/auth/admin/layout";
+import AdminLayout from "./pages/auth/admin-view/adminLayout";
 import AdminFeatures from "./pages/auth/admin-view/features";
 import AdminOrders from "./pages/auth/admin-view/orders";
 import AdminProducts from "./pages/auth/admin-view/products";
@@ -48,22 +48,22 @@ function App() {
         <Route path="products" element={<AdminProducts />} />
         <Route path="orders" element={<AdminOrders />} />
         <Route path="features" element={<AdminFeatures />} />
+        <Route
+          path="/shop"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <ShoppingLayout />
+            </CheckAuth>
+          }
+        >
+          <Route path="home" element={<ShoppingHome />} />
+          <Route path="listing" element={<ShoppingListing />} />
+          <Route path="checkout" element={<ShoppingCheckout />} />
+          <Route path="account" element={<ShoppingAccount />} />
+        </Route>
+        <Route path="unauth-page" element={<UnauthPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
-      <Route
-        path="/shop"
-        element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-            <ShoppingLayout />
-          </CheckAuth>
-        }
-      >
-        <Route path="home" element={<ShoppingHome />} />
-        <Route path="listing" element={<ShoppingListing />} />
-        <Route path="checkout" element={<ShoppingCheckout />} />
-        <Route path="account" element={<ShoppingAccount />} />
-      </Route>
-      <Route path="unauth-page" element={<UnauthPage />} />
-      <Route path="*" element={<NotFound />}></Route>
     </div>
   );
 }

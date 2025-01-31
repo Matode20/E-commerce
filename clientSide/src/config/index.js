@@ -6,7 +6,7 @@ export const registerFormControls = [
         componentType : "input",
         type : "text",
 
-    }
+    },
      {
         name : "email",
         label : "Email",
@@ -14,7 +14,7 @@ export const registerFormControls = [
         componentType : "input",
         type : "email",
 
-    }
+    },
      {
         name : "password",
         label : "Password",
