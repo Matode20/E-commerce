@@ -1,4 +1,5 @@
-import { Label } from "@radix-ui/react-label";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 import {
   Select,
   SelectContent,
@@ -6,15 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@radix-ui/react-select";
-import { Textarea } from "@radix-ui/react-textarea";
+import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import PropTypes from "prop-types";
-
-const types = {
-  input: "input",
-  select: "select",
-  textarea: "textarea",
-};
 
 function CommonForm({
   formControls,
@@ -28,9 +23,9 @@ function CommonForm({
     const value = formData[getControlItem.name] || "";
 
     switch (getControlItem.componentType) {
-      case types.input:
+      case "input":
         element = (
-          <input
+          <Input
             name={getControlItem.name}
             placeholder={getControlItem.placeholder}
             id={getControlItem.name}
@@ -45,16 +40,16 @@ function CommonForm({
           />
         );
         break;
-      case types.select:
+      case "select":
         element = (
           <Select
+            value={value}
             onValueChange={(value) =>
               setFormData({
                 ...formData,
                 [getControlItem.name]: value,
               })
             }
-            value={value}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder={getControlItem.placeholder} />
@@ -72,7 +67,7 @@ function CommonForm({
         );
         break;
 
-      case types.textarea:
+      case "textarea":
         element = (
           <Textarea
             name={getControlItem.name}
@@ -114,12 +109,12 @@ function CommonForm({
   return (
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3">
-        {formControls.map((controlItem) => {
+        {formControls.map((controlItem) => (
           <div key={controlItem.name} className="grid w-full gap-1.5">
             <Label className="mb-1">{controlItem.label}</Label>
             {renderInputsByComponentType(controlItem)}
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
       <Button type="submit" className="mt-2 w-full">
         {buttonText || "Submit"}

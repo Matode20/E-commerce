@@ -1,24 +1,28 @@
 import { Route, Routes } from "react-router-dom";
-import AuthLogin from "./pages/auth/login";
-import AuthRegister from "./pages/auth/register";
+import AuthLogin from "./pages/auth/Login";
+import AuthRegister from "./pages/auth/Register";
 import AuthLayout from "./components/authLayout";
-import AdminLayout from "./pages/auth/admin-view/adminLayout";
-import AdminFeatures from "./pages/auth/admin-view/features";
-import AdminOrders from "./pages/auth/admin-view/orders";
-import AdminProducts from "./pages/auth/admin-view/products";
-import AdminDashboard from "./pages/auth/admin-view/dashboard";
-import ShoppingLayout from "./pages/auth/shopping-view/layout";
-import NotFound from "./pages/auth/not-found";
-import ShoppingHome from "./pages/auth/shopping-view/home";
-import ShoppingListing from "./pages/auth/shopping-view/listing";
-import ShoppingCheckout from "./pages/auth/shopping-view/checkout";
-import ShoppingAccount from "./pages/auth/shopping-view/account";
-import CheckAuth from "./components/common/check-auth";
-import UnauthPage from "./pages/unauth-page";
+import AdminLayout from "./pages/auth/admin-view/AdminLayout";
+import AdminFeatures from "./pages/auth/admin-view/Features";
+import AdminOrders from "./pages/auth/admin-view/Orders";
+import AdminProducts from "./pages/auth/admin-view/Products";
+import AdminDashboard from "./pages/auth/admin-view/Dashboard";
+import ShoppingLayout from "./pages/auth/shopping-view/Layout";
+import NotFound from "./pages/auth/not-found/Not-found";
+import ShoppingHome from "./pages/auth/shopping-view/Home";
+import ShoppingListing from "./pages/auth/shopping-view/Listing";
+import ShoppingCheckout from "./pages/auth/shopping-view/Checkout";
+import ShoppingAccount from "./pages/auth/shopping-view/Account";
+import CheckAuth from "./components/common/Check-auth";
+import UnauthPage from "./pages/unauth-page/Index";
+import { useSelector } from "react-redux";
 
 function App() {
   const isAuthenticated = false;
   const user = null;
+
+const {user, isAuthenticated} = useSelector((state) => state.auth);
+
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       {/* common component */}
